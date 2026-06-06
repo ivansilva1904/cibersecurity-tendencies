@@ -1,0 +1,245 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tendencias en Ciberseguridad - Dashboard Interactivo</title>
+    <style>
+        :root {
+            --bg-color: #0d0f14;
+            --card-bg: #161a23;
+            --text-main: #ffffff;
+            --text-muted: #8492a6;
+            --accent-blue: #00a2ff;
+            --accent-orange: #ff6b35;
+            --border-color: #242b3d;
+            --glow-color: rgba(0, 162, 255, 0.15);
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+            background-color: var(--bg-color);
+            color: var(--text-main);
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            line-height: 1.5;
+        }
+
+        header {
+            background-color: rgba(22, 26, 35, 0.8);
+            backdrop-filter: blur(12px);
+            border-bottom: 1px solid var(--border-color);
+            padding: 20px 40px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        header h1 {
+            font-size: 20px;
+            font-weight: 600;
+            letter-spacing: -0.5px;
+            background: linear-gradient(90deg, var(--accent-blue), #00ffcc);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        header .badge {
+            background-color: rgba(0, 162, 255, 0.1);
+            border: 1px solid var(--accent-blue);
+            color: var(--accent-blue);
+            padding: 6px 14px;
+            border-radius: 30px;
+            font-size: 12px;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            box-shadow: 0 0 10px var(--glow-color);
+        }
+
+        main {
+            flex: 1;
+            max-width: 1280px;
+            margin: 40px auto;
+            padding: 0 24px;
+            width: 100%;
+        }
+
+        .intro-section {
+            margin-bottom: 35px;
+        }
+
+        .intro-section h2 {
+            font-size: 32px;
+            font-weight: 700;
+            margin-bottom: 12px;
+            letter-spacing: -0.5px;
+        }
+
+        .intro-section p {
+            color: var(--text-muted);
+            font-size: 16px;
+            max-width: 850px;
+            line-height: 1.6;
+        }
+
+        .dashboard-container {
+            background-color: var(--card-bg);
+            border: 1px solid var(--border-color);
+            border-radius: 16px;
+            padding: 24px;
+            box-shadow: 0 20px 50px rgba(0, 0, 0, 0.4);
+            margin-bottom: 40px;
+        }
+
+        .iframe-wrapper {
+            position: relative;
+            width: 100%;
+            aspect-ratio: 16 / 9;
+            border-radius: 8px;
+            overflow: hidden;
+            background-color: #0d0f14;
+            border: 1px solid rgba(255, 255, 255, 0.05);
+        }
+
+        .iframe-wrapper iframe {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            border: 0;
+        }
+
+        .insights-section h3 {
+            font-size: 22px;
+            font-weight: 600;
+            margin-bottom: 20px;
+            border-left: 4px solid var(--accent-blue);
+            padding-left: 12px;
+        }
+
+        .insights-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 24px;
+            margin-top: 20px;
+        }
+
+        .insight-card {
+            background-color: var(--card-bg);
+            border: 1px solid var(--border-color);
+            border-radius: 12px;
+            padding: 24px;
+            transition: transform 0.2s ease, border-color 0.2s ease;
+        }
+
+        .insight-card:hover {
+            border-color: rgba(0, 162, 255, 0.4);
+        }
+
+        .insight-card.orange:hover {
+            border-color: rgba(255, 107, 53, 0.4);
+        }
+
+        .insight-card h4 {
+            font-size: 18px;
+            margin-bottom: 12px;
+            color: var(--accent-blue);
+            font-weight: 600;
+        }
+
+        .insight-card.orange h4 {
+            color: var(--accent-orange);
+        }
+
+        .insight-card p {
+            color: var(--text-muted);
+            font-size: 14px;
+            line-height: 1.6;
+        }
+
+        footer {
+            text-align: center;
+            padding: 30px 24px;
+            color: var(--text-muted);
+            font-size: 14px;
+            border-top: 1px solid var(--border-color);
+            background-color: var(--card-bg);
+            margin-top: auto;
+        }
+
+        @media (max-width: 768px) {
+            header {
+                padding: 15px 20px;
+            }
+            header h1 {
+                font-size: 16px;
+            }
+            main {
+                margin: 20px auto;
+            }
+            .intro-section h2 {
+                font-size: 24px;
+            }
+            .dashboard-container {
+                padding: 12px;
+                border-radius: 12px;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <h1>Cybersecurity Trends Analytics</h1>
+        <span class="badge">Live Dashboard</span>
+    </header>
+
+    <main>
+        <section class="intro-section">
+            <h2>Análisis Global de Tendencias en Ciberseguridad</h2>
+            <p>Monitoreo estratégico y evolución de las principales amenazas informáticas globales en el periodo 2021-2025. Explore métricas clave sobre el impacto financiero y volumétrico de Phishing, Ransomware, Fraude BEC y brechas de información.</p>
+        </section>
+        
+        <div class="dashboard-container">
+            <div class="iframe-wrapper">
+                <iframe title="proyecto-tendencias-dashboard" src="https://app.powerbi.com/view?r=eyJrIjoiNzg5YTk3MjktNTVmMy00NTliLTliNjYtOTEzYmJmZmJlZmY5IiwidCI6IjQ2MmMwMmM1LTQ2NTUtNDJlZC1hNGRjLWVmNGU1MTdiNjQ1NCIsImMiOjR9" allowFullScreen="true"></iframe>
+            </div>
+        </div>
+
+        <section class="insights-section">
+            <h3>Áreas Críticas de Análisis</h3>
+            <div class="insights-grid">
+                <div class="insight-card">
+                    <h4>Impacto de Phishing e Ingeniería Social</h4>
+                    <p>Evaluación cruzada del incremento masivo en el volumen de incidentes de phishing frente al coste financiero real sufrido por las organizaciones a nivel global.</p>
+                </div>
+                <div class="insight-card orange">
+                    <h4>Evolución del Ransomware y Extorsión</h4>
+                    <p>Análisis de las fluctuaciones anuales de pérdidas económicas por secuestro de datos, destacando los repuntes críticos de ciberextorsión y suplantación gubernamental.</p>
+                </div>
+                <div class="insight-card">
+                    <h4>Compromiso de Correo (BEC) y Data Breaches</h4>
+                    <p>Visualización del fraude BEC como el principal catalizador de pérdidas financieras directas, junto con el crecimiento continuo de exfiltración de datos corporativos.</p>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        Panel Analítico de Ciberseguridad &copy; 2026. Desarrollado con Power BI e implementado de forma segura en GitHub Pages.
+    </footer>
+
+</body>
+</html>
